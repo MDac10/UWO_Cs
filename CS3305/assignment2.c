@@ -1,4 +1,4 @@
-/*Megan Da Costa - Student ID: 251009855*/
+/*Megan Da Costa*/
 /*CS3305 - Assignment 2*/
 /*Due: October 8th 2021*/
 /*practicing with pipes*/
