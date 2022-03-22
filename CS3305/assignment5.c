@@ -1,4 +1,4 @@
-/*Megan Da Costa - Student ID: 251009855*/
+/*Megan Da Costa*/
 /*CS3305 - Assignment 5*/
 /*Due: November 29th 2021*/
 /*bank account example - practicing mutual exclusion*/
