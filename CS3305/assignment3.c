@@ -1,4 +1,4 @@
-/*Megan Da Costa - Student ID: 251009855*/
+/*Megan Da Costa*/
 /*CS3305 - Assignment 3*/
 /*Due: October 25th 2021*/
 /*practicing with threads*/
