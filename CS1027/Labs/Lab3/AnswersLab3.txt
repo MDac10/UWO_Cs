@@ -1,0 +1,89 @@
+Answers for Lab 3
+-----------------------------------------------
+
+
+EXERCISE 1
+
+1. Should instance variable interestRate be declared as static? Explain.
+	
+	The instance variable interestRate should not be declared static because multiple objects of interestRate 
+	are supposed to be created. Each of these will have different interest rates and a static variable is supposed 
+	to remain constant throughout the Class. If it were to be static then every time interestRate is changed when making
+	a new object it will change all instances of it.
+
+2. Write the output from the test harness for class SavingsAccount. 
+	
+	SavingsAccount: balance $215, interest rate 0.15
+
+
+
+EXERCISE 2
+
+3. Which method(s) of the class CheckingAccount demonstrate overriding? Which methods demonstrate overloading?
+	
+	The methods deposit(), withdraw(), and toString() demonstrate overriding. No methods in CheckingAccount 
+	demonstrate overloading.
+
+4. Is bacc0 = chacc1 legal? Why?
+	
+	This is legal because bacc0 is an instance of the BankAccount class which is what the CheckingAccount derives from.
+	Since chacc1 is an instance of the CheckingAccount class and therefore inherits all the methods and public variables
+	from its superclass BankAccount. Because a superclass type can reference an object of the subclass type, this move is legal.
+
+5. Is chacc1 = bacc1 legal? Why?
+	
+	This is not legal because the types do not match. Because chacc1 is an object of the CheckingAccount class, the subclass of 
+	BankAccount, and bacc1 is an object of the BankAccount class the highest in this inheritance hierarchy, it cannot be converted
+	to its lower level CheckingAccount class.
+
+6. On which variables bacc1, chacc1, sacc1 was the invocation to method
+deductFees() valid? Explain.
+	
+	chacc1 was the only variable that the method deductFees() was valid. This was because the deductFees() methods comes from the 
+	CheckingAccount class which chacc1 is an instance of while bacc1 is an instance of the BankAccount superclass. As a result the superclass
+	doesn't have access to its subclass' methods. sacc1 is an instance of the SavingsAccount class which is only a sibling to CheckingAccount 
+	(both of them inherit the methods and public variable from their superclass but may not have the same methods. As a result sacc1 cannot
+	access the deductFees() method.
+
+7. Which compilation error(s) could be fixed through casting? Which one(s)
+could not be fixed? Why?
+	
+	The bacc1 compilation error was fixed by casting because BankingAccount and CheckingAccount are within one inheritance hierarchy. Since BankingAccount is the superclass
+	everything in CheckingAccount takes after it and the program believed bacc1 could be converted to a lower level of the hierarchy. However, the sacc1 compilation error
+	doesn't go away with casting because although SavingsAccount, which is what sacc1 is an instance of, is also a subclass of BankingAccount it goes down a different path 
+	than CheckingAccount and since they have no immediate link between them, the deductFees() method from CheckingAccount cannot work with sacc1.
+
+8. Does the program run after deleting the line causing the compilation 
+error? If the program crashed, why did it crash?
+	
+	The program crashed after commenting out the line with the compilation error because the superclass BankingAccount cannot be cast to CheckingAccount even though they are in
+	the same inheritance hierarchy. This is due to the fact that bacc1 is type BankAccount and object BankAccount. If it had referenced an object of CheckingAccount, casting would 
+	apply.
+
+9. What was the runtime error obtained when changing super.deposit(amount)
+to deposit(amount) in class CheckingAccount.java? 
+	
+	java.lang.StackOverflowError (at CheckingAccount.deposit)
+
+10. How many times is method deposit invoked?
+	
+	infinitely (until the program detects that it created an infinite loops and terminates it).
+
+
+
+EXERCISE 3
+
+11. Why does the compiler issue an error message when invoking newAcc.getTransactionCount()? Why does the compiler issue an error message when invoking newAcc.getInterestRate()?
+	
+	newAcc is made as an instance of the BankAccount class at the beginning of the program and the iff statement in the middle determines what the newAcc variable will refer to at runtime.
+	Because the program doesn't know which of CheckingAccount or SavingsAccount newAcc will be at runTime and there is no sufficient casting the program thinks that newAcc will be of BankAccount
+	type by the end and therefore wouldn't be able to access .getTransactionCount() or .getInterestRate from its subclasses CheckingAccount and SavingsAccount, respectively.
+
+12. Can you tell whether in the statement String accountInfo = newAcc.toString(); the
+method toString() being invoked is from the class CheckingAccount or from the class
+SavingsAccount? Explain your answer.
+
+	Depending on what the user input is for the "if" statement, then yes the toString() method being invoked can be predicted. If the user inputs c for checking new newAcc variable is made 
+	referencing to a CheckingAccount object and therefore would call the CheckingAccount toString(). If the user inputs s for savings then the newAcc variable is made referencing to 
+	a SavingsAccount object and therefore would call the SavingsAccount toString().
+	
