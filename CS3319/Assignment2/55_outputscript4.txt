@@ -1,0 +1,243 @@
+Warning: Using a password on the command line interface can be insecure.
+ERROR 1050 (42S01) at line 4: Table 'tripInfo' already exists
+--------------
+CREATE VIEW tripInfo AS SELECT DISTINCT firstName, lastName, tripName, country, price FROM passenger, bustrip, booking WHERE passenger.passengerID = booking.passengerID AND bustrip.tripID = booking.tripID
+--------------
+
+--------------
+SELECT * FROM tripInfo
+--------------
+
+firstName	lastName	tripName	country	price
+Stiles	Stilinkski	New York Sewers	USA	12
+Ned	Flanders	Disney World and Sea World	USA	400
+Ned	Flanders	Shetland and Orkney	UK	400
+Todd	Flanders	Disney World and Sea World	USA	200
+Heidi	Klum	Castles of Germany	Germany	600.99
+Dwight	Schrute	Beaches Galore	Bermuda	600
+Dwight	Schrute	Castles of Germany	Germany	550
+Creed	Bratton	Beaches Galore	Bermuda	600
+8 rows in set
+
+--------------
+SELECT * FROM tripInfo WHERE tripName LIKE '%Castles%'
+--------------
+
+firstName	lastName	tripName	country	price
+Heidi	Klum	Castles of Germany	Germany	600.99
+Dwight	Schrute	Castles of Germany	Germany	550
+2 rows in set
+
+--------------
+SELECT * FROM bus
+--------------
+
+licensePlate	capacity
+CAND123	50
+TAXI111	4
+TAXI222	3
+TAXI333	4
+VAN1111	10
+VAN2222	15
+6 rows in set
+
+--------------
+DELETE FROM bus WHERE licensePlate LIKE '%UWO%'
+--------------
+
+Query OK, 0 rows affected
+
+--------------
+SELECT * FROM bus
+--------------
+
+licensePlate	capacity
+CAND123	50
+TAXI111	4
+TAXI222	3
+TAXI333	4
+VAN1111	10
+VAN2222	15
+6 rows in set
+
+--------------
+SELECT * FROM passport
+--------------
+
+passportID	citizenshipCountry	expiry	birthDate
+BH13	USA	6/7/2025	26/8/1991
+GE11	Germany	1/1/2027	7/12/1970
+US10	USA	1/1/2025	2/19/1970
+US12	USA	1/1/2025	8/12/1972
+US13	USA	1/1/2025	5/12/2001
+US14	USA	1/1/2025	3/19/2004
+US15	USA	1/1/2025	9/17/2012
+US22	USA	4/4/2030	6/11/1950
+US23	USA	3/3/2018	6/24/1940
+US89	Germany	2/2/2022	4/8/1976
+US90	Italy	2/28/2020	4/4/1980
+US91	Germany	1/1/2030	2/2/1959
+12 rows in set
+
+--------------
+SELECT * FROM passenger
+--------------
+
+passengerID	firstName	lastName	passportID
+24	Stiles	Stilinkski	BH13
+44	Ned	Flanders	US22
+45	Todd	Flanders	US23
+66	Heidi	Klum	GE11
+78	Dwight	Schrute	US89
+80	Creed	Bratton	US91
+6 rows in set
+
+--------------
+DELETE FROM passport WHERE citizenshipCountry = 'Canada'
+--------------
+
+Query OK, 0 rows affected
+
+--------------
+SELECT * FROM passport
+--------------
+
+passportID	citizenshipCountry	expiry	birthDate
+BH13	USA	6/7/2025	26/8/1991
+GE11	Germany	1/1/2027	7/12/1970
+US10	USA	1/1/2025	2/19/1970
+US12	USA	1/1/2025	8/12/1972
+US13	USA	1/1/2025	5/12/2001
+US14	USA	1/1/2025	3/19/2004
+US15	USA	1/1/2025	9/17/2012
+US22	USA	4/4/2030	6/11/1950
+US23	USA	3/3/2018	6/24/1940
+US89	Germany	2/2/2022	4/8/1976
+US90	Italy	2/28/2020	4/4/1980
+US91	Germany	1/1/2030	2/2/1959
+12 rows in set
+
+--------------
+SELECT * FROM passenger
+--------------
+
+passengerID	firstName	lastName	passportID
+24	Stiles	Stilinkski	BH13
+44	Ned	Flanders	US22
+45	Todd	Flanders	US23
+66	Heidi	Klum	GE11
+78	Dwight	Schrute	US89
+80	Creed	Bratton	US91
+6 rows in set
+
+--------------
+SELECT * FROM bustrip
+--------------
+
+tripID	tripName	startDate	endDate	country	licensePlate
+1	Castles of Germany	1/1/2022	1/17/2022	Germany	VAN1111
+2	Tuscany Sunsets	3/3/2022	3/14/2022	Italy	TAXI222
+4	Beaches Galore	4/4/2022	4/14/2022	Bermuda	TAXI222
+5	Cottage Country	6/1/2022	6/22/2022	Canada	CAND123
+6	Arrivaderci Roma	7/5/2022	7/15/2022	Italy	TAXI111
+7	Shetland and Orkney	9/9/2022	9/29/2022	UK	TAXI111
+8	Disney World and Sea World	6/10/2022	6/20/2022	USA	VAN1111
+10	New York Sewers	1/1/2022	3/2/2022	USA	VAN1111
+8 rows in set
+
+--------------
+DELETE FROM bustrip WHERE tripName = 'California Wines'
+--------------
+
+Query OK, 0 rows affected
+
+--------------
+SELECT * FROM bustrip
+--------------
+
+tripID	tripName	startDate	endDate	country	licensePlate
+1	Castles of Germany	1/1/2022	1/17/2022	Germany	VAN1111
+2	Tuscany Sunsets	3/3/2022	3/14/2022	Italy	TAXI222
+4	Beaches Galore	4/4/2022	4/14/2022	Bermuda	TAXI222
+5	Cottage Country	6/1/2022	6/22/2022	Canada	CAND123
+6	Arrivaderci Roma	7/5/2022	7/15/2022	Italy	TAXI111
+7	Shetland and Orkney	9/9/2022	9/29/2022	UK	TAXI111
+8	Disney World and Sea World	6/10/2022	6/20/2022	USA	VAN1111
+10	New York Sewers	1/1/2022	3/2/2022	USA	VAN1111
+8 rows in set
+
+--------------
+DELETE FROM bustrip WHERE tripName = 'Arrivaderci Roma'
+--------------
+
+Query OK, 1 row affected
+
+--------------
+SELECT * FROM passenger
+--------------
+
+passengerID	firstName	lastName	passportID
+24	Stiles	Stilinkski	BH13
+44	Ned	Flanders	US22
+45	Todd	Flanders	US23
+66	Heidi	Klum	GE11
+78	Dwight	Schrute	US89
+80	Creed	Bratton	US91
+6 rows in set
+
+--------------
+DELETE FROM passenger WHERE firstName = 'Pam'
+--------------
+
+Query OK, 0 rows affected
+
+--------------
+SELECT * FROM passenger
+--------------
+
+passengerID	firstName	lastName	passportID
+24	Stiles	Stilinkski	BH13
+44	Ned	Flanders	US22
+45	Todd	Flanders	US23
+66	Heidi	Klum	GE11
+78	Dwight	Schrute	US89
+80	Creed	Bratton	US91
+6 rows in set
+
+--------------
+SELECT * FROM tripInfo
+--------------
+
+firstName	lastName	tripName	country	price
+Stiles	Stilinkski	New York Sewers	USA	12
+Ned	Flanders	Disney World and Sea World	USA	400
+Ned	Flanders	Shetland and Orkney	UK	400
+Todd	Flanders	Disney World and Sea World	USA	200
+Heidi	Klum	Castles of Germany	Germany	600.99
+Dwight	Schrute	Beaches Galore	Bermuda	600
+Dwight	Schrute	Castles of Germany	Germany	550
+Creed	Bratton	Beaches Galore	Bermuda	600
+8 rows in set
+
+--------------
+DELETE FROM passenger WHERE lastName = 'Simpson'
+--------------
+
+Query OK, 0 rows affected
+
+--------------
+SELECT * FROM tripInfo
+--------------
+
+firstName	lastName	tripName	country	price
+Stiles	Stilinkski	New York Sewers	USA	12
+Ned	Flanders	Disney World and Sea World	USA	400
+Ned	Flanders	Shetland and Orkney	UK	400
+Todd	Flanders	Disney World and Sea World	USA	200
+Heidi	Klum	Castles of Germany	Germany	600.99
+Dwight	Schrute	Beaches Galore	Bermuda	600
+Dwight	Schrute	Castles of Germany	Germany	550
+Creed	Bratton	Beaches Galore	Bermuda	600
+8 rows in set
+
+Bye
