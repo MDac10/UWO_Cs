@@ -1,0 +1,46 @@
+USE 55_assign2db;
+
+-- Query 1
+SELECT tripName FROM bustrip WHERE country = 'Italy';
+
+-- Query 2
+SELECT DISTINCT lastName FROM passenger;
+
+-- Query 3
+SELECT * FROM bustrip ORDER BY tripName ASC;
+
+-- Query 4
+SELECT tripName, country, startDate FROM bustrip WHERE startDate > '2022-4-30';  
+
+-- Query 5
+SELECT firstName, lastName, birthDate FROM passenger JOIN passport ON passenger.passportID = passport.passportID WHERE citizenshipCountry = 'USA';
+
+-- Query 6
+SELECT tripName, capacity FROM bustrip JOIN bus ON bustrip.licensePlate = bus.licensePlate WHERE startDate >= '2022-4-1' AND startDate <= '2022-9-1';
+
+-- Query 7
+SELECT * FROM passport JOIN passenger ON passport.passportID = passenger.passportID WHERE expiry < ADDDATE(CURDATE(), INTERVAL 1 YEAR); 
+
+-- Query 8
+SELECT DISTINCT p.firstName, p.lastName, b.tripName FROM passenger p, bustrip b, booking book WHERE p.passengerID = book.passengerID AND b.tripID = book.tripID AND p.lastName LIKE 'S%';
+
+-- Query 9
+SELECT num.NumberofPassengers 'Number of Passengers', num.tripName, num.tripID FROM (SELECT tripName, bustrip.tripID, COUNT(booking.tripID) 'NumberofPassengers' FROM bustrip JOIN booking ON bustrip.tripId = booking.tripID GROUP BY tripName) AS num WHERE num.tripName = 'Castles of Germany';
+
+-- Query 10
+SELECT cost.country, SUM(cost.price) FROM (SELECT DISTINCT country, price FROM bustrip JOIN booking ON bustrip.tripID = booking.tripID) as cost GROUP BY cost.country;
+
+-- Query 11
+SELECT DISTINCT p.firstName, p.lastName, pass.citizenshipCountry, b.tripName, b.country FROM passenger p, passport pass, bustrip b, booking book WHERE p.passportID = pass.passportID AND p.passengerID = book.passengerID AND book.tripID = b.tripID AND country <> citizenshipCountry;
+
+-- Query 12
+SELECT info.tripID, info.tripName FROM (SELECT bustrip.tripID, tripName, COUNT(booking.tripID) 'count' FROM bustrip LEFT OUTER JOIN booking ON bustrip.tripID = booking.tripID GROUP BY bustrip.tripID) as info WHERE info.count = 0;
+
+-- Query 13
+SELECT * FROM (SELECT DISTINCT p.firstName, p.lastName, pass.citizenshipCountry, SUM(book.price)/2 'sum' FROM passenger p, passport pass, booking book WHERE p.passportID = pass.passportID AND p.passengerID = book.passengerID GROUP BY firstName ORDER BY sum DESC) as mx LIMIT 1;
+
+-- Query 14
+SELECT tripName, COUNT(booking.tripID) 'NumberofPassengers' FROM bustrip LEFT OUTER JOIN booking ON bustrip.tripId = booking.tripID GROUP BY tripName HAVING NumberofPassengers < 4;
+
+-- Query 15
+SELECT b.tripName 'Bus Trip Name', COUNT(book.tripID) 'Current Number of Passengers', bus.capacity 'Capacity of Assigned Bus', bus.licensePlate 'Current Bus Assigned License Plate' FROM bustrip b, booking book, bus WHERE b.tripID = book.tripID AND b.licensePlate = bus.LicensePlate GROUP BY b.tripName;

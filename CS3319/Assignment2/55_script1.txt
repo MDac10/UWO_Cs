@@ -1,0 +1,21 @@
+SHOW DATABASES;
+
+DROP DATABASE IF EXISTS 55_assign2db;
+
+CREATE DATABASE 55_assign2db;
+
+USE 55_assign2db;
+
+SHOW TABLES;
+
+CREATE TABLE passport (passportID char(4) NOT NULL, citizenshipCountry char(20) NOT NULL, expiry DATE NOT NULL, birthDate DATE NOT NULL, PRIMARY KEY(passportID));
+
+CREATE TABLE passenger (passengerID int NOT NULL, firstName char(20) NOT NULL, lastName char(20) NOT NULL, passportID char(4) NOT NULL, FOREIGN KEY(passportID) REFERENCES passport(passportID) ON DELETE CASCADE ON UPDATE CASCADE, PRIMARY KEY (passengerID)); 
+
+CREATE TABLE bus (licensePlate char(7) NOT NULL, capacity int NOT NULL, PRIMARY KEY(licensePlate));
+
+CREATE TABLE bustrip (tripID int NOT NULL, tripName char(50) NOT NULL, startDate DATE NOT NULL, endDate DATE NOT NULL, country char(30) NOT NULL, licensePlate char(7) NOT NULL, FOREIGN KEY (licensePlate) REFERENCES bus(licensePlate) ON DELETE CASCADE ON UPDATE CASCADE, PRIMARY KEY(tripID));
+
+CREATE TABLE booking (passengerID int NOT NULL, tripID int NOT NULL, price float NOT NULL, FOREIGN KEY (passengerID) REFERENCES passenger(passengerID) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (tripID) REFERENCES bustrip(tripID));
+
+SHOW TABLES;

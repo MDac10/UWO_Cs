@@ -1,0 +1,70 @@
+USE 55_assign2db;
+
+-- Create view
+CREATE VIEW tripInfo AS SELECT DISTINCT firstName, lastName, tripName, country, price FROM passenger, bustrip, booking WHERE passenger.passengerID = booking.passengerID AND bustrip.tripID = booking.tripID;
+
+-- View works
+SELECT * FROM tripInfo;
+
+-- Looking for Castles
+SELECT * FROM tripInfo WHERE tripName LIKE '%Castles%';
+
+-- bus table
+SELECT * FROM bus;
+
+-- delete UWO buses
+DELETE FROM bus WHERE licensePlate LIKE '%UWO%';
+
+-- was it removed
+SELECT * FROM bus;
+
+-- passport table
+SELECT * FROM passport;
+
+-- passenger table
+SELECT * FROM passenger;
+
+-- delete Canadian passports
+DELETE FROM passport WHERE citizenshipCountry = 'Canada';
+
+-- show passport table without Canadian passports
+SELECT * FROM passport;
+
+-- passenger table updated
+SELECT * FROM passenger;
+
+-- reason why passenger had "Michael Scott" removed was because passenger references the foreign key "passportID" form passport table. On a delete cascade, all references of the deleted passport would be deleted as well
+
+-- bustrip table
+SELECT * FROM bustrip;
+
+-- delete California Wine trip
+DELETE FROM bustrip WHERE tripName = 'California Wines';
+
+-- show updated bustrip table
+SELECT * FROM bustrip;
+
+-- try to delete Arrivaderci Roma trip
+DELETE FROM bustrip WHERE tripName = 'Arrivaderci Roma';
+
+-- reason why an error is produced when attempting to delete this trip is because there exists a trip in the booking table that references this trips tripID as a foreign key but does not allow for it to be deleted with a delete cascade
+
+-- passenger table
+SELECT * FROM passenger;
+
+-- delete all "Pam"'s
+DELETE FROM passenger WHERE firstName = 'Pam';
+
+-- show updated passenger table
+SELECT * FROM passenger;
+
+-- select everything from view
+SELECT * FROM tripInfo;  
+
+-- delete all Simpson's
+DELETE FROM passenger WHERE lastName = 'Simpson';
+
+-- Check view again too see if Simpson's were deleted
+SELECT * FROM tripInfo; 
+
+-- end of scr
