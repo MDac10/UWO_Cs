@@ -1,0 +1,34 @@
+/* Styling for bustrip website */
+
+body {
+	font-family: 'Montserrat:wght@100&display=swap';
+	font-size: 18px;
+	background-color: #E6E6FA;
+	color: DarkSlateGrey;
+}
+
+h1{
+	font-size: 40px;
+}
+
+h2 {
+	font-size: 26px;
+}
+
+input {
+	font-family:'Montserrat:wght@100&display=swap';
+}
+
+table, th, td {
+	vertical-align: top;
+}
+
+img {
+	vertical-align: top;
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+} /*credit to w3schools*/ 
