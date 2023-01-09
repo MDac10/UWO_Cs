@@ -169,25 +169,31 @@ In UNIX-like systems, files are grouped into directories, which in turn are orga
 
 Run the command `which cowsay` and copy the result here:
 ```console
-
+/usr/games/cowsay
 ```
 This is an absolute [path](https://en.wikipedia.org/wiki/Path_(computing)) that specifies the location of this program in the filesystem.
 
 
 To change locations in the filesystem, you need to use the `cd` (change directory) program.  If you enter `cd` by itself, then you switch back to your default (home) location.  To find out what this is, type `cd; pwd` and record the result below:
 ```console
-
+/home/mdacos2
 ```
 (The semi-colon separates commands.  You can also hit `return` after `cd` and then type `pwd` to get the same result.)
 
 
 Let's use `cd` to move from your home directory and then use `cd ..` to move your location up one directory at a time.  You should arrive at the root (`/`) in two steps.  Copy the output of `ls` for the root directory here:
 ```console
-
+mdacos2@compute:/$ ls
+bin   dev  home  lib32  libx32      media  opt   root  sbin  srv  tmp  var
+boot  etc  lib   lib64  lost+found  mnt    proc  run   snap  sys  usr
 ```
 
 Next, use `cd <directory name>` to step down to the location of the `cowsay` program file.  When you reach the correct location, generate a long-listing of the cowsay file using the command `ls -l cowsay`.
 
+```console
+mdacos2@compute:/usr/games$ ls -l cowsay
+-rwxr-xr-x 1 root root 4664 Oct 28  2019 cowsay
+```
 
 
 When you are finished working on the remote server, close your session with the command `logout`.
