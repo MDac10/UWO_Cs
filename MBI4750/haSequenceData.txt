@@ -1,0 +1,3 @@
+esearch -db nucleotide -query "(txid119210[Organism:exp] AND hemagglutinin) AND 1000:1010[slen]" | efetch -format fasta > haseq.fasta
+mafft haseq.fasta > haseq.mafft.fa
+iqtree -nt AUTO -m GTR+F+I -bb 1000 -s haseq.mafft.fa
