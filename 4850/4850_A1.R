@@ -1,5 +1,5 @@
 #Assignment1
-#Megan Da Costa - student ID: 251009855
+#name - student ID: xxxxxxxxx
 
 #integer vector example
 int.vec <- c(10L, 12L, 13L, 14L)
