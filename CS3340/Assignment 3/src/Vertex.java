@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Megan Da Costa - Student ID: 251009855
+ * @author name - Student ID: xxxxxxxxx
  * CS3340 Assignment 3**/
 public class Vertex {
 	
