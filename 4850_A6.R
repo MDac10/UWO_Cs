@@ -1,5 +1,5 @@
 ##Assignment 6
-##Megan Da Costa - student ID: 251009855
+##name - student ID: xxxxxxxxx
 
 if(!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
