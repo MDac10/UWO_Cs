@@ -1,5 +1,5 @@
 /**
- * @author Megan Da Costa - Student ID: 251009855
+ * @author name - Student ID: xxxxxxxxx
  * CS3340 Assignment 3**/
 
 import java.lang.reflect.Array;
